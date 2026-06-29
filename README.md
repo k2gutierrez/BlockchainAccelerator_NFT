@@ -126,12 +126,12 @@ forge install OpenZeppelin/openzeppelin-contracts foundry-rs/forge-std chiru-lab
 
 🧪 Testing
 ```Bash
-forge test -vvvv --fork-url [https://arb1.arbitrum.io/rpc](https://arb1.arbitrum.io/rpc)
+forge test
 ```
 
 📊 Coverage
 ```Bash
-forge coverage --fork-url [https://arb1.arbitrum.io/rpc](https://arb1.arbitrum.io/rpc)
+forge coverage
 ```
 
 📜 Contract Addresses
