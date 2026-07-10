@@ -6,6 +6,11 @@ import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
 import { Strings } from "@openzeppelin/contracts/utils/Strings.sol";
 import { ReentrancyGuard } from "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 
+/**
+ * @title Derek NFT Collection
+ * @author Carlos Gutiérrez
+ * @notice ERC721A Collection
+ */
 contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
 
     error DerekNftCollection__SoldOut();
