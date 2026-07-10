@@ -55,7 +55,7 @@ contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
     }
 
     /**
-     * 
+     * @dev Set nft price
      * @param _newAmount New Price for token
      */
     function setNftPrice(uint256 _newAmount) external onlyOwner {
@@ -63,13 +63,16 @@ contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
     }
 
     /**
-     * 
+     * @dev Set max per wallet allowed
      * @param _newAmountAllowed New amount allowed per wallet
      */
     function setMaxPerWallet(uint256 _newAmountAllowed) external onlyOwner {
         s_MaxPerWallet = _newAmountAllowed;
     }
 
+    /**
+     * @dev Withdrawe balance from contract
+     */
     function withdrawBalance() external onlyOwner nonReentrant {
         if (address(this).balance == 0) revert NFTMock__NoBalanceInContract();
         uint256 balanceToWithdraw = address(this).balance;
@@ -80,7 +83,7 @@ contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
 
     // Functions
     /**
-     * 
+     * @dev Mint function
      * @param _quantity Amount of tokens to mint
      */
     function mint(uint256 _quantity) external payable nonReentrant {
@@ -94,7 +97,7 @@ contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
     }
 
     /**
-     * Nft Owner calls this to toggle their own NFT state between base and evolved
+     * @dev Nft Owner calls this to toggle their own NFT state between base and evolved
      * @param tokenId Token ID for changing its own state.
      */
     function toggleState(uint256 tokenId) external {
@@ -147,27 +150,52 @@ contract DerekNftCollection is ERC721A, Ownable, ReentrancyGuard {
             : "";
     }
 
+    /**
+     * @dev Get max supply
+     * @return maxSupply
+     */
     function getMaxSupply() external view returns(uint256 maxSupply) {
         maxSupply = i_MaxSupply;
     }
 
+    /**
+     * @dev Get max per wallet allowed
+     * @return maxPerWallet
+     */
     function getMaxPerWallet() external view returns(uint256 maxPerWallet) {
         maxPerWallet = s_MaxPerWallet;
     }
 
+    /**
+     * @dev Get nft price
+     * @return price
+     */
     function getNftPrice() external view returns(uint256 price) {
         price = s_NftPrice;
     }
 
+    /**
+     * @dev Check if it is soulbound
+     * @return  soulbound
+     */
     function getIsSoulbound() external view returns(bool soulbound) {
         soulbound = i_soulbound;
     }
 
+    /**
+     * @dev Get URIs
+     * @return UriBase 
+     * @return UriEvolved 
+     */
     function getURIs() external view returns(string memory UriBase, string memory UriEvolved) {
         UriBase = s_UriStateBase;
         UriEvolved = s_UriStateEvolved;
     }
 
+    /**
+     * @dev Get Nft status
+     * @param tokenId Token Id
+     */
     function getNftStatus(uint256 tokenId) external view returns(bool status) {
         status = s_IsEvolved[tokenId];
     }
